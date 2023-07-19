@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QuanLib.CommandLine\QuanLib.CommandLine.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="QuanLib.ConsoleUtil">
+      <HintPath>..\..\QuanLib\release\QuanLib.ConsoleUtil\QuanLib.ConsoleUtil.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
