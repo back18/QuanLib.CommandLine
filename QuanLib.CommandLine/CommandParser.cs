@@ -83,7 +83,7 @@ namespace QuanLib.CommandLine
                         result.Add(new OverflowItem(item, itemIndex));
                         break;
                     default:
-                        throw new NotFiniteNumberException();
+                        throw new InvalidOperationException();
                 }
                 itemIndex += item.Length + 1;
             }

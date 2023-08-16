@@ -10,20 +10,20 @@ using System.Threading.Tasks;
 
 namespace QuanLib.CommandLine.ConsoleCommand
 {
-    public class ConsoleCommandReader : CommandReader
+    public class CommandReader : ICommandReader
     {
-        public ConsoleCommandReader(CommandParser parser, Palette palette)
+        public CommandReader(CommandParser parser)
         {
-            EnablePrompt = true;
-            Palette = palette ?? throw new ArgumentNullException(nameof(palette));
-
             _parser = parser ?? throw new ArgumentNullException(nameof(parser));
             _buffer = new();
             _eraser = new(Console.CursorTop);
             _comboBox = null;
+
+            EnablePrompt = true;
+            Palette = new();
         }
 
-        private bool _isrun;
+        private bool _reading;
 
         private readonly CommandParser _parser;
 
@@ -33,7 +33,7 @@ namespace QuanLib.CommandLine.ConsoleCommand
 
         private ConsoleComboBox? _comboBox;
 
-        public override bool IsRun => _isrun;
+        public bool Reading => _reading;
 
         /// <summary>
         /// 是否启用提示词功能
@@ -45,9 +45,9 @@ namespace QuanLib.CommandLine.ConsoleCommand
         /// </summary>
         public Palette Palette { get; }
 
-        public override CommandItems Start()
+        public CommandItems ReadCommand()
         {
-            _isrun = true;
+            _reading = true;
 
             if (Console.CursorLeft > 0)
                 Console.WriteLine();
@@ -73,7 +73,7 @@ namespace QuanLib.CommandLine.ConsoleCommand
                         keyinfo = Console.ReadKey(true);
                         break;
                     }
-                    else if (!_isrun)
+                    else if (!_reading)
                     {
                         throw new CommandReaderException("命令读取器已停止");
                     }
@@ -106,6 +106,8 @@ namespace QuanLib.CommandLine.ConsoleCommand
                             Update(items, command, false);
                             Console.WriteLine();
                             goto ok;
+                            case ConsoleKey.Escape:
+                            break;
                         case ConsoleKey.Tab:
                             if (_comboBox is KeyPromptComboBox keyPrompt)
                             {
@@ -137,13 +139,13 @@ namespace QuanLib.CommandLine.ConsoleCommand
                 }
             }
             ok:
-            _isrun = false;
+            _reading = false;
             return items;
         }
 
-        public override void Stop()
+        public void StopRead()
         {
-            _isrun = false;
+            _reading = false;
         }
 
         private void Update(CommandItems items, Command? command, bool enablePrompt)

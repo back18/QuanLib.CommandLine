@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace QuanLib.CommandLine.ConsoleCommand
 {
-    public class ConsoleMessageOutputer : MessageOutputer
+    public class CommandWriter : ICommandWriter
     {
-        public override void OutputMessage(string? message)
+        public void WriteResult(string? text)
         {
-            if (message is not null)
-                Console.WriteLine(message);
+            if (text is not null)
+                Console.WriteLine(text);
         }
     }
 }

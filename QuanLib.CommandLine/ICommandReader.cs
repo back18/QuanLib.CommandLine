@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace QuanLib.CommandLine
 {
-    public abstract class MessageOutputer
+    public interface ICommandReader
     {
-        public abstract void OutputMessage(string? message);
+        public bool Reading { get; }
+
+        public CommandItems ReadCommand();
+
+        public void StopRead();
     }
 }

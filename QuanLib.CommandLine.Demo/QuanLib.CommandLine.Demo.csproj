@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="QuanLib">
-      <HintPath>..\..\QuanLib\release\QuanLib\QuanLib.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\QuanLib.CommandLine.ConsoleTerminal\QuanLib.CommandLine.ConsoleTerminal.csproj" />
+    <ProjectReference Include="..\QuanLib.CommandLine\QuanLib.CommandLine.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,15 +1,14 @@
-﻿using QuanLib.CommandLine.Objects;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuanLib.CommandLine
+namespace QuanLib.CommandLine.ConsoleCommand
 {
-    public class CommandExecutor
+    public class CommandExecutor : ICommandExecutor
     {
-        public virtual string? ExecuteCommand(CommandSender sender, CommandObject obj, out object? result)
+        public string? ExecuteCommand(CommandSender sender, CommandObject obj, out object? result)
         {
             if (sender is null)
                 throw new ArgumentNullException(nameof(sender));
@@ -28,7 +27,15 @@ namespace QuanLib.CommandLine
                 return "【错误】没有足够的权限执行该命令。";
             }
 
-            return obj.Command.Func.Run(obj.Object, out result, obj.Arguments.ToArray());
+            try
+            {
+                return obj.Command.Func.Run(obj.Object, out result, obj.Arguments.ToArray());
+            }
+            catch (Exception ex)
+            {
+                result = default;
+                return $"【错误】无法执行命令，错误信息: {ex.GetType()}: {ex.Message}";
+            }
         }
     }
 }

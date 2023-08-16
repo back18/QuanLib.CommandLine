@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace QuanLib.CommandLine.Objects
+namespace QuanLib.CommandLine
 {
     public class CommandObject
     {
