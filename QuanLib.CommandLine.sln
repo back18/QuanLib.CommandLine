@@ -5,9 +5,13 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanLib.CommandLine", "QuanLib.CommandLine\QuanLib.CommandLine.csproj", "{A15B4B4F-75EB-4480-A2B4-304EA67A8A33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLib.CommandLine.Demo", "QuanLib.CommandLine.Demo\QuanLib.CommandLine.Demo.csproj", "{A624C1B8-B80E-4DE1-A1FE-B4DEABAA0CA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanLib.CommandLine.Demo", "QuanLib.CommandLine.Demo\QuanLib.CommandLine.Demo.csproj", "{A624C1B8-B80E-4DE1-A1FE-B4DEABAA0CA1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanLib.CommandLine.ConsoleTerminal", "QuanLib.CommandLine.ConsoleTerminal\QuanLib.CommandLine.ConsoleTerminal.csproj", "{8121B73A-AFF7-4652-9AAD-A0D2CCD8A1C6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanLib.Core", "..\QuanLib\QuanLib.Core\QuanLib.Core.csproj", "{DABA3D7B-B4E0-4898-A368-2E2AF8A9BA33}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanLib.ConsoleUtil", "..\QuanLib\QuanLib.ConsoleUtil\QuanLib.ConsoleUtil.csproj", "{0BC4705E-C78E-450C-846F-0177AC53C219}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{8121B73A-AFF7-4652-9AAD-A0D2CCD8A1C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8121B73A-AFF7-4652-9AAD-A0D2CCD8A1C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8121B73A-AFF7-4652-9AAD-A0D2CCD8A1C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DABA3D7B-B4E0-4898-A368-2E2AF8A9BA33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DABA3D7B-B4E0-4898-A368-2E2AF8A9BA33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DABA3D7B-B4E0-4898-A368-2E2AF8A9BA33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DABA3D7B-B4E0-4898-A368-2E2AF8A9BA33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BC4705E-C78E-450C-846F-0177AC53C219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BC4705E-C78E-450C-846F-0177AC53C219}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BC4705E-C78E-450C-846F-0177AC53C219}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BC4705E-C78E-450C-846F-0177AC53C219}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

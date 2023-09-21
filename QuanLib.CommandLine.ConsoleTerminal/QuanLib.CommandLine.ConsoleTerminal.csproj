@@ -7,16 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\QuanLib\QuanLib.ConsoleUtil\QuanLib.ConsoleUtil.csproj" />
     <ProjectReference Include="..\QuanLib.CommandLine\QuanLib.CommandLine.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="QuanLib.ConsoleUtil">
-      <HintPath>..\..\QuanLib\release\QuanLib.ConsoleUtil\QuanLib.ConsoleUtil.dll</HintPath>
-    </Reference>
-    <Reference Include="QuanLib.Core">
-      <HintPath>..\..\QuanLib\release\QuanLib.Core\QuanLib.Core.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
