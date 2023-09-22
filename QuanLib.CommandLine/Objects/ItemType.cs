@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuanLib.CommandLine
+namespace QuanLib.CommandLine.Objects
 {
     public enum ItemType
     {

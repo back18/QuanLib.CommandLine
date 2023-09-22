@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuanLib.CommandLine.ConsoleCommand
+namespace QuanLib.CommandLine.ConsoleTerminal
 {
     public class CommandExecutor : ICommandExecutor
     {

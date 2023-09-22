@@ -1,4 +1,4 @@
-﻿using QuanLib.CommandLine.ConsoleCommand;
+﻿using QuanLib.CommandLine.ConsoleTerminal;
 
 namespace QuanLib.CommandLine.Demo
 {

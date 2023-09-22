@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace QuanLib.CommandLine.ConsoleCommand
+namespace QuanLib.CommandLine.ConsoleTerminal
 {
     public class CommandReader : ICommandReader
     {
@@ -106,7 +106,7 @@ namespace QuanLib.CommandLine.ConsoleCommand
                             Update(items, command, false);
                             Console.WriteLine();
                             goto ok;
-                            case ConsoleKey.Escape:
+                        case ConsoleKey.Escape:
                             break;
                         case ConsoleKey.Tab:
                             if (_comboBox is KeyPromptComboBox keyPrompt)
@@ -247,7 +247,7 @@ namespace QuanLib.CommandLine.ConsoleCommand
                                         argumentTexts.Add(new(text, Palette.ArgumentColor));
                                         break;
                                     case ItemType.ArgumentError:
-                                        ArgumentErrorItem errItem = ((ArgumentErrorItem)items[argIndex + i]);
+                                        ArgumentErrorItem errItem = (ArgumentErrorItem)items[argIndex + i];
                                         if (errItem.Exception is CommandArgumentOutOfRangeException)
                                             argumentTexts.Add(new(text, Palette.WarnColor));
                                         else
