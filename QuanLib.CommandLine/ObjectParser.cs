@@ -13,10 +13,15 @@ namespace QuanLib.CommandLine
         static ObjectParser()
         {
             ObjectParser parser = new(
-                (string s) => s ?? throw new ArgumentNullException(nameof(s)),
+                (string s) =>
+                {
+                    ArgumentNullException.ThrowIfNull(s);
+                    return s;
+                },
                 (string s, [MaybeNullWhen(false)] out object result) =>
                 {
-                    result = s ?? throw new ArgumentNullException(nameof(s));
+                    ArgumentNullException.ThrowIfNull(s);
+                    result = s;
                     return true;
                 });
             parsers = new()
