@@ -19,8 +19,7 @@ namespace QuanLib.CommandLine
 
         public CommandItems ToItems(string s)
         {
-            if (s is null)
-                throw new ArgumentNullException(nameof(s));
+            ArgumentNullException.ThrowIfNull(s, nameof(s));
 
             List<Item> result = new();
 
@@ -130,8 +129,7 @@ namespace QuanLib.CommandLine
 
         public CommandObject ToCommandObject(CommandItems items)
         {
-            if (items is null)
-                throw new ArgumentNullException(nameof(items));
+            ArgumentNullException.ThrowIfNull(items, nameof(items));
 
             List<string> keys = new();
             List<string> args = new();

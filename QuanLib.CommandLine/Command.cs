@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLib.CommandLine.Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,11 @@ namespace QuanLib.CommandLine
     {
         public Command(CommandKey key, CommandFunc func, Level level = Level.User)
         {
-            Key = key ?? throw new ArgumentNullException(nameof(key));
-            Func = func ?? throw new ArgumentNullException(nameof(func));
+            ArgumentNullException.ThrowIfNull(key, nameof(key));
+            ArgumentNullException.ThrowIfNull(func, nameof(func));
+
+            Key = key;
+            Func = func;
             Level = level;
         }
 

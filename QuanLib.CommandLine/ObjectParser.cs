@@ -81,8 +81,7 @@ namespace QuanLib.CommandLine
 
         private static ObjectParser? GetObjectParser_(Type type)
         {
-            if (type is null)
-                throw new ArgumentNullException(nameof(type));
+            ArgumentNullException.ThrowIfNull(type, nameof(type));
 
             MethodInfo? parseMethod = type.GetMethod("Parse", BindingFlags.Public | BindingFlags.Static, null, new[] { typeof(string) }, null);
             if (parseMethod is null)

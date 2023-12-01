@@ -10,7 +10,9 @@ namespace QuanLib.CommandLine.Objects
     {
         public KeyItem(string text, int startIndex, KeyNode node) : base(text, startIndex)
         {
-            Node = node ?? throw new ArgumentNullException(nameof(node));
+            ArgumentNullException.ThrowIfNull(node, nameof(node));
+
+            Node = node;
         }
 
         public KeyNode Node { get; }

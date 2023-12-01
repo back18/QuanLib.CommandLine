@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace QuanLib.CommandLine.Objects
 {
@@ -11,7 +12,9 @@ namespace QuanLib.CommandLine.Objects
     {
         public CommandItems(IReadOnlyList<Item> items)
         {
-            _items = items ?? throw new ArgumentNullException(nameof(items));
+            ArgumentNullException.ThrowIfNull(items, nameof(items));
+
+            _items = items;
         }
 
         public CommandItems(IEnumerable<Item> items) : this(items?.ToList().AsReadOnly() ?? throw new ArgumentNullException(nameof(items))) { }

@@ -11,7 +11,9 @@ namespace QuanLib.CommandLine.Objects
     {
         protected Item(string text, int startIndex)
         {
-            Text = text ?? throw new ArgumentNullException(nameof(text));
+            ArgumentNullException.ThrowIfNull(text, nameof(text));
+
+            Text = text;
             Value = ToValue(text);
             StartIndex = startIndex;
         }

@@ -11,8 +11,7 @@ namespace QuanLib.CommandLine
     {
         public CommandKey(string keytext)
         {
-            if (string.IsNullOrEmpty(keytext))
-                throw new ArgumentException($"“{nameof(keytext)}”不能为 null 或空。", nameof(keytext));
+            ArgumentException.ThrowIfNullOrEmpty(keytext, nameof(keytext));
 
             KeyItems = new(keytext.Split(' '));
 
@@ -28,8 +27,7 @@ namespace QuanLib.CommandLine
 
         public CommandKey(IEnumerable<string> keyitems)
         {
-            if (keyitems is null)
-                throw new ArgumentNullException(nameof(keyitems));
+            ArgumentNullException.ThrowIfNull(keyitems, nameof(keyitems));
 
             KeyItems = keyitems.ToList().AsReadOnly();
 
@@ -52,8 +50,7 @@ namespace QuanLib.CommandLine
 
         public bool IsSubKey(CommandKey key)
         {
-            if (key is null)
-                throw new ArgumentNullException(nameof(key));
+            ArgumentNullException.ThrowIfNull(key, nameof(key));
 
             if (key.KeyItemCount < KeyItemCount)
                 return false;

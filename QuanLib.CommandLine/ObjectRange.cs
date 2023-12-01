@@ -23,8 +23,7 @@ namespace QuanLib.CommandLine
 
         public bool IsRange(object value)
         {
-            if (value is null)
-                throw new ArgumentNullException(nameof(value));
+            ArgumentNullException.ThrowIfNull(value, nameof(value));
             if (value.GetType() != MinValue.GetType())
                 throw new ArgumentException("类型必须为 " + MinValue.GetType(), nameof(value));
 

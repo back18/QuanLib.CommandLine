@@ -14,7 +14,9 @@ namespace QuanLib.CommandLine.ConsoleTerminal
     {
         public CommandReader(CommandParser parser)
         {
-            _parser = parser ?? throw new ArgumentNullException(nameof(parser));
+            ArgumentNullException.ThrowIfNull(parser, nameof(parser));
+
+            _parser = parser;
             _buffer = new();
             _eraser = new(Console.CursorTop);
             _comboBox = null;
@@ -150,8 +152,7 @@ namespace QuanLib.CommandLine.ConsoleTerminal
 
         private void Update(CommandItems items, Command? command, bool enablePrompt)
         {
-            if (items is null)
-                throw new ArgumentNullException(nameof(items));
+            ArgumentNullException.ThrowIfNull(items, nameof(items));
 
             CursorPosition cursor = CursorPosition.Now;
             CursorPosition start = new(0, _eraser.StartLine);

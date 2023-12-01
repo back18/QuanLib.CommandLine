@@ -25,8 +25,7 @@ namespace QuanLib.CommandLine
 
         public void AddCommand(Command command)
         {
-            if (command is null)
-                throw new ArgumentNullException(nameof(command));
+            ArgumentNullException.ThrowIfNull(command, nameof(command));
 
             if (!_command.TryAdd(command.Key.ToString(), command))
                 throw new ArgumentException("命令重复" ,nameof(command));
@@ -36,8 +35,7 @@ namespace QuanLib.CommandLine
 
         public void RemoveCommand(string key)
         {
-            if (key is null)
-                throw new ArgumentNullException(nameof(key));
+            ArgumentNullException.ThrowIfNull(key, nameof(key));
 
             if (!_command.ContainsKey(key))
                 throw new ArgumentException("不存在该命令：" + key, nameof(key));

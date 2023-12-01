@@ -11,8 +11,7 @@ namespace QuanLib.CommandLine
     {
         public KeyNode(string key, KeyNode? baseNode = null)
         {
-            if (string.IsNullOrEmpty(key))
-                throw new ArgumentException($"“{nameof(key)}”不能为 null 或空。", nameof(key));
+            ArgumentException.ThrowIfNullOrEmpty(key, nameof(key));
 
             Key = key;
             BaseNode = baseNode;
@@ -37,8 +36,7 @@ namespace QuanLib.CommandLine
 
         internal void AddSubNode(string nodekey)
         {
-            if (nodekey is null)
-                throw new ArgumentNullException(nameof(nodekey));
+            ArgumentNullException.ThrowIfNull(nodekey, nameof(nodekey));
 
             if (!_subnodes.TryAdd(nodekey, new(nodekey, this)))
                 throw new ArgumentException("节点重复", nameof(nodekey));
@@ -46,8 +44,7 @@ namespace QuanLib.CommandLine
 
         internal void AddSubNode(CommandKey commandKey)
         {
-            if (commandKey is null)
-                throw new ArgumentNullException(nameof(commandKey));
+            ArgumentNullException.ThrowIfNull(commandKey, nameof(commandKey));
 
             KeyNode node = this;
             foreach (string item in commandKey.KeyItems)
@@ -60,8 +57,7 @@ namespace QuanLib.CommandLine
 
         internal void RemoveSubNode(string? nodekey)
         {
-            if (nodekey is null)
-                throw new ArgumentNullException(nameof(nodekey));
+            ArgumentNullException.ThrowIfNull(nodekey, nameof(nodekey));
 
             if (!_subnodes.ContainsKey(nodekey))
                 throw new ArgumentException("不存在该节点", nameof(nodekey));
@@ -102,8 +98,7 @@ namespace QuanLib.CommandLine
 
         public static KeyNode BulidRootNode(CommandKey[] keys)
         {
-            if (keys is null)
-                throw new ArgumentNullException(nameof(keys));
+            ArgumentNullException.ThrowIfNull(keys, nameof(keys));
 
             KeyNode rootnode = new("root");
             foreach (CommandKey commandKey in keys)

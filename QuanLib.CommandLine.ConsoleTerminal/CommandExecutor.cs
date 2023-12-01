@@ -10,10 +10,8 @@ namespace QuanLib.CommandLine.ConsoleTerminal
     {
         public string? ExecuteCommand(CommandSender sender, CommandObject obj, out object? result)
         {
-            if (sender is null)
-                throw new ArgumentNullException(nameof(sender));
-            if (obj is null)
-                throw new ArgumentNullException(nameof(obj));
+            ArgumentNullException.ThrowIfNull(sender, nameof(sender));
+            ArgumentNullException.ThrowIfNull(obj, nameof(obj));
 
             if (obj.Command is null)
             {

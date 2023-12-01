@@ -11,7 +11,9 @@ namespace QuanLib.CommandLine.ConsoleTerminal
     {
         public CommandSystem(CommandSender sender)
         {
-            Sender = sender ?? throw new ArgumentNullException(nameof(sender));
+            ArgumentNullException.ThrowIfNull(sender, nameof(sender));
+
+            Sender = sender;
             Pool = new();
             Parser = new(Pool);
             Terminal = new CommandTerminal(Parser);

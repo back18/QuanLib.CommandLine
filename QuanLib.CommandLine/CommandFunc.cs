@@ -15,8 +15,7 @@ namespace QuanLib.CommandLine
     {
         public CommandFunc(MethodInfo methodInfo, object? defaultObject = null, Func<object?, string?>? resultout = null, Func<Exception, string?>? catchexception = null)
         {
-            if (methodInfo is null)
-                throw new ArgumentNullException(nameof(methodInfo));
+            ArgumentNullException.ThrowIfNull(methodInfo, nameof(methodInfo));
             if (!methodInfo.IsStatic && defaultObject is null)
                 throw new ArgumentException("非静态方法必须指定默认执行对象", nameof(methodInfo));
             _method = methodInfo;
@@ -48,8 +47,7 @@ namespace QuanLib.CommandLine
 
             _func = (object? obj, out object? result, string[] args) =>
             {
-                if (args is null)
-                    throw new ArgumentNullException(nameof(args));
+                ArgumentNullException.ThrowIfNull(args, nameof(args));
 
                 try
                 {

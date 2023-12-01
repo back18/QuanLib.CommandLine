@@ -12,12 +12,9 @@ namespace QuanLib.CommandLine.Attributes
     {
         public ArgumentRangeAttribute(Type type, string minValue, string maxValue)
         {
-            if (type is null)
-                throw new ArgumentNullException(nameof(type));
-            if (string.IsNullOrEmpty(minValue))
-                throw new ArgumentException($"“{nameof(minValue)}”不能为 null 或空。", nameof(minValue));
-            if (string.IsNullOrEmpty(maxValue))
-                throw new ArgumentException($"“{nameof(maxValue)}”不能为 null 或空。", nameof(maxValue));
+            ArgumentNullException.ThrowIfNull(type, nameof(type));
+            ArgumentException.ThrowIfNullOrEmpty(minValue, nameof(minValue));
+            ArgumentException.ThrowIfNullOrEmpty(maxValue, nameof(maxValue));
 
             ObjectParser parser = ObjectParser.GetParser(type) ?? throw new ArgumentException(nameof(type) + " 没有 Parse 方法");
             if (!parser.TryParse(minValue, out var omin))
@@ -33,10 +30,8 @@ namespace QuanLib.CommandLine.Attributes
 
         public ArgumentRangeAttribute(object minValue, object maxValue)
         {
-            if (minValue is null)
-                throw new ArgumentNullException(nameof(minValue));
-            if (maxValue is null)
-                throw new ArgumentNullException(nameof(maxValue));
+            ArgumentNullException.ThrowIfNull(minValue, nameof(minValue));
+            ArgumentNullException.ThrowIfNull(maxValue, nameof(maxValue));
             if (minValue.GetType() != maxValue.GetType())
                 throw new ArgumentException($"参数的类型必须一致");
 

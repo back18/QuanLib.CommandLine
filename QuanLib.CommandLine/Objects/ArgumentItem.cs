@@ -10,7 +10,9 @@ namespace QuanLib.CommandLine.Objects
     {
         public ArgumentItem(string text, int startIndex, CommandArgument argument) : base(text, startIndex)
         {
-            Argument = argument ?? throw new ArgumentNullException(nameof(argument));
+            ArgumentNullException.ThrowIfNull(argument, nameof(argument));
+
+            Argument = argument;
         }
 
         public CommandArgument Argument { get; }

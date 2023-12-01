@@ -10,7 +10,8 @@ namespace QuanLib.CommandLine.Objects
     {
         public ArgumentErrorItem(string text, int startIndex, CommandArgument argument, Exception exception) : base(text, startIndex, argument)
         {
-            Exception = exception ?? throw new ArgumentNullException(nameof(exception));
+            ArgumentNullException.ThrowIfNull(exception, nameof(exception));
+            Exception = exception;
         }
 
         public override ItemType Type => ItemType.ArgumentError;

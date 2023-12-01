@@ -12,14 +12,13 @@ namespace QuanLib.CommandLine
     {
         public CommandObject(Command? command, IReadOnlyList<string> args, object? obj = null)
         {
-            if (args is null)
-                throw new ArgumentNullException(nameof(args));
+            ArgumentNullException.ThrowIfNull(args, nameof(args));
 
             if (args.Any(item => item is null))
                 throw new ArgumentException("含有null值的子项", nameof(args));
 
             Command = command;
-            Arguments = args ?? throw new ArgumentNullException(nameof(args));
+            Arguments = args;
             Object = obj;
         }
 
