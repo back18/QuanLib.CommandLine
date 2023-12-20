@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace QuanLib.CommandLine
 {
-    public interface ICommandSystem : ISwitchable
+    public interface ICommandSystem : IRunnable
     {
-        public CommandSender Sender { get; }
+        public CommandSender CommandSender { get; }
 
-        public CommandPool Pool { get; }
+        public CommandPool CommandPool { get; }
 
-        public CommandParser Parser { get; }
+        public CommandParser CommandParser { get; }
 
-        public ICommandTerminal Terminal { get; }
+        public ICommandTerminal CommandTerminal { get; }
     }
 }

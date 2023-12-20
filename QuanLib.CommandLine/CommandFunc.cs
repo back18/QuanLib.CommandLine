@@ -20,8 +20,8 @@ namespace QuanLib.CommandLine
                 throw new ArgumentException("非静态方法必须指定默认执行对象", nameof(methodInfo));
             _method = methodInfo;
 
-            if (defaultObject is not null && defaultObject.GetType() != methodInfo.DeclaringType)
-                throw new ArgumentException("默认执行对象的类型必须与方法所属对象类型一致", nameof(defaultObject));
+            if (defaultObject is not null && methodInfo.DeclaringType is not null && !defaultObject.GetType().IsSubclassOf(methodInfo.DeclaringType))
+                throw new ArgumentException("默认执行对象的类型，必须派生自方法所属对象类型", nameof(defaultObject));
             DefaultObject = defaultObject;
 
             resultout ??= (object? o) => o?.ToString();

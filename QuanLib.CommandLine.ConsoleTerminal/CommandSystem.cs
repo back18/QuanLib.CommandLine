@@ -1,4 +1,5 @@
 ﻿using QuanLib.CommandLine.Objects;
+using QuanLib.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,52 +8,36 @@ using System.Threading.Tasks;
 
 namespace QuanLib.CommandLine.ConsoleTerminal
 {
-    public class CommandSystem : ICommandSystem
+    public class CommandSystem : RunnableBase, ICommandSystem
     {
         public CommandSystem(CommandSender sender)
         {
             ArgumentNullException.ThrowIfNull(sender, nameof(sender));
 
-            Sender = sender;
-            Pool = new();
-            Parser = new(Pool);
-            Terminal = new CommandTerminal(Parser);
+            CommandSender = sender;
+            CommandPool = new();
+            CommandParser = new(CommandPool);
+            CommandTerminal = new CommandTerminal(CommandParser);
 
-            Pool.AddCommand(new(new("commandsystem stop"), CommandFunc.GetFunc(Stop, this)));
-
-            _runing = false;
+            CommandPool.AddCommand(new(new("commandsystem stop"), CommandFunc.GetFunc(Stop, this)));
         }
 
-        private bool _runing;
+        public CommandSender CommandSender { get; }
 
-        public bool Runing => _runing;
+        public CommandPool CommandPool { get; }
 
-        public CommandSender Sender { get; }
+        public CommandParser CommandParser { get; }
 
-        public CommandPool Pool { get; }
+        public ICommandTerminal CommandTerminal { get; }
 
-        public CommandParser Parser { get; }
-
-        public ICommandTerminal Terminal { get; }
-
-        public void Start()
+        protected override void Run()
         {
-            if (_runing)
-                return;
-            _runing = true;
-
-            while (_runing)
+            while (IsRunning)
             {
-                CommandItems items = Terminal.Reader.ReadCommand();
-                string? output = Terminal.Executor.ExecuteCommand(Sender, Parser.ToCommandObject(items), out var result);
-                Terminal.Writer.WriteResult(output);
+                CommandItems items = CommandTerminal.Reader.ReadCommand();
+                string? output = CommandTerminal.Executor.ExecuteCommand(CommandSender, CommandParser.ToCommandObject(items), out var result);
+                CommandTerminal.Writer.WriteResult(output);
             }
-        }
-
-        public void Stop()
-        {
-            _runing = false;
-            Terminal.Reader.StopRead();
         }
     }
 }
